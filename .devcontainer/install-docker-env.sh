@@ -1,7 +1,7 @@
-#!/bin/echo Error. Aborting. Instead of running this script, please use: source
+#!/bin/bash
 
 #
-# Copyright (C) 2020 Christoph Sommer <sommer@ccs-labs.org>
+# Copyright (C) 2023 Christoph Sommer <sommer@cms-labs.org>
 #
 # Documentation for these modules is at http://veins.car2x.org/
 #
@@ -22,5 +22,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-cd "soc_e_simulator" && . ./setenv; cd - > /dev/null
+set -e
 
+# make sure that /opt/docker-env.sh is sourced for every shell (bash, zsh, ...)
+ln -sf /opt/docker-env.sh /etc/profile.d/01-docker-env.sh

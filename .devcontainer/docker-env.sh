@@ -1,7 +1,7 @@
-#!/bin/echo Error. Aborting. Instead of running this script, please use: source
+# sourced for every new shell (by placing in /etc/profile.d or similar)
 
 #
-# Copyright (C) 2020 Christoph Sommer <sommer@ccs-labs.org>
+# Copyright (C) 2023 Christoph Sommer <sommer@cms-labs.org>
 #
 # Documentation for these modules is at http://veins.car2x.org/
 #
@@ -22,5 +22,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-cd "soc_e_simulator" && . ./setenv; cd - > /dev/null
-
+export PYTHONPATH=/opt/pip/usr/local/lib/python3.11/dist-packages:$PYTHONPATH
+export PATH=/usr/lib/ccache:$PATH
+export PATH=$PATH:/opt/omnetpp/bin

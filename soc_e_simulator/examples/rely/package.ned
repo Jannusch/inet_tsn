@@ -1,7 +1,6 @@
 //
-// Copyright (C) 2019 Christoph Sommer <sommer@ccs-labs.org>
+// Copyright (C) 2023 Jannusch Bigge <jannusch.bigge@mailbox.tu-dresden.de>
 //
-// Documentation for these modules is at http://veins.car2x.org/
 //
 // SPDX-License-Identifier: GPL-2.0-or-later
 //
@@ -18,4 +17,4 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-package soc_e_simulator;
+package soc_e_simulator.examples.rely;

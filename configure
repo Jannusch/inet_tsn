@@ -24,9 +24,5 @@
 
 set -e
 
-(cd veins && ./configure "$@")
-(cd inet && make makefiles)
-(cd veins/subprojects/veins_inet && ./configure "$@")
-
 (cd soc_e_simulator && ./configure "$@")
 

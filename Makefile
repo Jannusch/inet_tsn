@@ -24,18 +24,7 @@
 .PHONY: all clean
 
 all:
-	$(MAKE) -C veins all
-ifdef MODE
-	$(MAKE) -C inet all
-else
-	$(MAKE) -C inet all MODE=release
-	$(MAKE) -C inet all MODE=debug
-endif
-	$(MAKE) -C veins/subprojects/veins_inet all
 	$(MAKE) -C soc_e_simulator all
 
 clean:
-	$(MAKE) -C veins clean
-	$(MAKE) -C veins/subprojects/veins_inet clean
-	$(MAKE) -C inet clean
 	$(MAKE) -C soc_e_simulator clean

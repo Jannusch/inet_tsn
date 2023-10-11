@@ -1,9 +1,8 @@
-#!/bin/echo Error. Aborting. Instead of running this script, please use: source
+#!/bin/sh
 
 #
-# Copyright (C) 2020 Christoph Sommer <sommer@ccs-labs.org>
+# Copyright (C) 2023 Jannusch Bigge <jannusch.bigge@mailbox.tu-dresden.de>
 #
-# Documentation for these modules is at http://veins.car2x.org/
 #
 # SPDX-License-Identifier: GPL-2.0-or-later
 #
@@ -22,5 +21,4 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-cd "soc_e_simulator" && . ./setenv; cd - > /dev/null
-
+exec ../../bin/soc_e_simulator_run "$@"

@@ -1,9 +1,7 @@
-#!/bin/echo Error. Aborting. Instead of running this script, please use: source
 
 #
-# Copyright (C) 2020 Christoph Sommer <sommer@ccs-labs.org>
+# Copyright (C) 2023 Jannusch Bigge
 #
-# Documentation for these modules is at http://veins.car2x.org/
 #
 # SPDX-License-Identifier: GPL-2.0-or-later
 #
@@ -22,5 +20,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-cd "soc_e_simulator" && . ./setenv; cd - > /dev/null
+FROM mcr.microsoft.com/devcontainers/base:bookworm
 
+RUN \
+    apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get -y install --no-install-recommends \
+    bash \
+    ;
+
+WORKDIR /opt
+
+ARG OPP_VERSION=6.0.1
+COPY install-omnetpp.sh .
+RUN ./install-omnetpp.sh && rm ./install-omnetpp.sh
+
+ARG INET_VERSION=4.5.2
+COPY install-inet.sh .
+RUN ./install-inet.sh && rm ./install-inet.sh
+
+COPY docker-env.sh .
+COPY install-docker-env.sh .
+RUN ./install-docker-env.sh && rm ./install-docker-env.sh
+
+COPY install-misc.sh .
+RUN ./install-misc.sh && rm ./install-misc.sh
