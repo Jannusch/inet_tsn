@@ -23,6 +23,8 @@ import inet.networks.base.TsnNetworkBase;
 import inet.node.contract.IEthernetNetworkNode;
 import inet.node.ethernet.EthernetLink;
 
+import inet.applications.ethernet.*;
+
 import inet.node.tsn.TsnDevice;
 import inet.node.tsn.TsnSwitch;
 
@@ -33,14 +35,13 @@ network TSNNetwork extends TsnNetworkBase
     submodules:
         talker: <default("TsnDevice")> like IEthernetNetworkNode {
         }
-        traffic_generator: <default("TsnDevice")> like IEthernetNetworkNode {
-            numEthInterfaces=5;
+        traffic_generator: <default("TsnSwitch")> like IEthernetNetworkNode {
+            numEthInterfaces=1;
         }
         switch[3]: <default("TsnSwitch")> like IEthernetNetworkNode {
             numEthInterfaces=5;
         }
         listener: <default("TsnDevice")> like IEthernetNetworkNode {
-            numEthInterfaces=5;
         }
     connections allowunconnected:
         talker.ethg++ <--> EthernetLink <--> switch[0].ethg[0];
@@ -49,7 +50,7 @@ network TSNNetwork extends TsnNetworkBase
 
         // connection from N12 to traffic generator
         switch[1].ethg[2] <--> EthernetLink <--> traffic_generator.ethg[0];
-        traffic_generator.ethg[4] <--> EthernetLink <--> switch[1].ethg[3];
+        //traffic_generator.ethg[4] <--> EthernetLink <--> switch[1].ethg[3];
 
         switch[2].ethg[1] <--> EthernetLink <--> listener.ethg++;
         
