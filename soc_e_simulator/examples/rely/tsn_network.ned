@@ -38,21 +38,27 @@ network TSNNetwork extends TsnNetworkBase
         traffic_generator: <default("TsnSwitch")> like IEthernetNetworkNode {
             numEthInterfaces=1;
         }
-        switch[3]: <default("TsnSwitch")> like IEthernetNetworkNode {
-            numEthInterfaces=5;
+        bridgev20: <default("TsnSwitch")> like IEthernetNetworkNode {
+            numEthInterfaces=2;
+        }
+        bridgev22: <default("TsnSwitch")> like IEthernetNetworkNode {
+            numEthInterfaces=2;
+        }
+        bridgeN12: <default("TsnSwitch")> like IEthernetNetworkNode {
+            numEthInterfaces=3;
         }
         listener: <default("TsnDevice")> like IEthernetNetworkNode {
         }
     connections allowunconnected:
-        talker.ethg++ <--> EthernetLink <--> switch[0].ethg[0];
-        switch[0].ethg[1] <--> EthernetLink <--> switch[1].ethg[1];
-        switch[1].ethg[4] <--> EthernetLink <--> switch[2].ethg[0];
+        talker.ethg++ <--> EthernetLink <--> bridgev20.ethg[0];
+        bridgev20.ethg[1] <--> EthernetLink <--> bridgeN12.ethg[0];
+        bridgeN12.ethg[2] <--> EthernetLink <--> bridgev22.ethg[0];
 
         // connection from N12 to traffic generator
-        switch[1].ethg[2] <--> EthernetLink <--> traffic_generator.ethg[0];
+        bridgeN12.ethg[1] <--> EthernetLink <--> traffic_generator.ethg[0];
         //traffic_generator.ethg[4] <--> EthernetLink <--> switch[1].ethg[3];
 
-        switch[2].ethg[1] <--> EthernetLink <--> listener.ethg++;
+        bridgev22.ethg[1] <--> EthernetLink <--> listener.ethg++;
         
 
 }
