@@ -35,7 +35,7 @@ network TSNNetwork extends TsnNetworkBase
     submodules:
         talker: <default("TsnDevice")> like IEthernetNetworkNode {
         }
-        traffic_generator: <default("TsnSwitch")> like IEthernetNetworkNode {
+        traffic_generator: <default("TsnDevice")> like IEthernetNetworkNode {
             numEthInterfaces=1;
         }
         bridgev20: <default("TsnSwitch")> like IEthernetNetworkNode {
